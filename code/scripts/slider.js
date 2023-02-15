@@ -4,32 +4,42 @@ const videos     = document.querySelectorAll(".sliderMove video");
 let number = 1;
 
 function move() {
-    sliderMove.style.transform = `translateX(-${number*25}%)`;
+    sliderMove.style.transform = `translateX(-${number*20}%)`;
 }
 
 bars.forEach((br, index)=>{
     br.addEventListener("click",()=>{
         number = index;
+        // Modifico el flex de las barras
+        bars.forEach(b=>{
+            b.style.flex = 1;
+            b.style.borderColor = "#b9b9b9";
+        });
+        br.style.flex = 2;
+        br.style.borderColor = "white";
         move();
     });
 });
 
-function recursiva() {
-    /******* Obtenemos el tiempo de duración del video *******/
-    // videos[0].addEventListener("loadeddata",function(ev){
-    //     let  time = Math.floor(videos[0].duration);
-    //     time = parseInt(`${time}000`);
-        
-    //     //Reproducimos el video
-    //     // videos[0].play(); 
-        
-    //     // Cambiamos de video luego de que el video anterio finalize
-    //     setTimeout(()=>{
-    //         number++;
-    //         move();
-    //         recursiva();
-    //     }, time);
-    // },true);   
+function changeUrl() {
+    if(window.innerWidth < 750) {
+        videos[0].src = "./rg/videos/CR7_WebsiteHighlights-Sporting_mobile.mp4";
+        videos[1].src = "./rg/videos/CR7_WebsiteHighlights-Juventus_mobile.mp4";
+        videos[2].src = "./rg/videos/CR7_WebsiteHighlights-ManUtd_mobile.mp4";
+        videos[3].src = "./rg/videos/CR7_WebsiteHighlights-RealMadrid_mobile.mp4";
+        videos[4].src = "./rg/videos/CR7_WebsiteHighlights-Portugal_mobile.mp4";
+    }
+    else {
+        videos[0].src = "./rg/videos/CR7_WebsiteHighlights-Juventus_desktop.mp4";
+        videos[1].src = "./rg/videos/CR7_WebsiteHighlights-ManUtd_desktop.mp4";
+        videos[2].src = "./rg/videos/CR7_WebsiteHighlights-Portugal_desktop.mp4";
+        videos[3].src = "./rg/videos/CR7_WebsiteHighlights-RealMadrid_desktop.mp4";
+        videos[4].src = "./rg/videos/CR7_WebsiteHighlights-ManUtd_desktop.mp4";
+    }
 }
 
-recursiva();
+window.addEventListener("resize", ()=>{
+    changeUrl()
+});
+
+changeUrl();

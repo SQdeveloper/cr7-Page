@@ -1,5 +1,5 @@
 const contVideo = document.querySelector(".video");
-const video     = document.querySelector("video");
+const video     = document.querySelector(".video video");
 const play      = document.querySelector(".video img");
 const span      = document.querySelectorAll(".video span");
 let playVideo = false;
@@ -15,4 +15,3 @@ contVideo.addEventListener("click", ()=>{
         sp.style.display = "none";
     });
 });
-
